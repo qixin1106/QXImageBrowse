@@ -13,6 +13,7 @@
 		990693E21A408F73004B5A04 /* QXBrowseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 990693DF1A408F73004B5A04 /* QXBrowseVC.m */; };
 		9984E6461A41286D0086CE54 /* QXActivityView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9984E6431A41286D0086CE54 /* QXActivityView.m */; };
 		9984E6471A41286D0086CE54 /* QXHUDView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9984E6451A41286D0086CE54 /* QXHUDView.m */; };
+		9984E64B1A41886D0086CE54 /* QXImageBrowseModule.gif in Resources */ = {isa = PBXBuildFile; fileRef = 9984E64A1A41886D0086CE54 /* QXImageBrowseModule.gif */; };
 		99AB68F51A373CB4006E02B7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 99AB68F41A373CB4006E02B7 /* main.m */; };
 		99AB68F81A373CB4006E02B7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 99AB68F71A373CB4006E02B7 /* AppDelegate.m */; };
 		99AB68FB1A373CB4006E02B7 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99AB68FA1A373CB4006E02B7 /* ViewController.m */; };
@@ -47,6 +48,7 @@
 		9984E6431A41286D0086CE54 /* QXActivityView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QXActivityView.m; sourceTree = "<group>"; };
 		9984E6441A41286D0086CE54 /* QXHUDView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QXHUDView.h; sourceTree = "<group>"; };
 		9984E6451A41286D0086CE54 /* QXHUDView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QXHUDView.m; sourceTree = "<group>"; };
+		9984E64A1A41886D0086CE54 /* QXImageBrowseModule.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = QXImageBrowseModule.gif; sourceTree = "<group>"; };
 		99AB68EF1A373CB4006E02B7 /* QXImageBrowseModule.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QXImageBrowseModule.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		99AB68F31A373CB4006E02B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		99AB68F41A373CB4006E02B7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 		99AB68E61A373CB4006E02B7 = {
 			isa = PBXGroup;
 			children = (
+				9984E64A1A41886D0086CE54 /* QXImageBrowseModule.gif */,
 				99AB68F11A373CB4006E02B7 /* QXImageBrowseModule */,
 				99AB68F01A373CB4006E02B7 /* Products */,
 			);
@@ -207,6 +210,7 @@
 				99AB68FE1A373CB4006E02B7 /* Main.storyboard in Resources */,
 				99AB69031A373CB4006E02B7 /* LaunchScreen.xib in Resources */,
 				99AB69001A373CB4006E02B7 /* Images.xcassets in Resources */,
+				9984E64B1A41886D0086CE54 /* QXImageBrowseModule.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
