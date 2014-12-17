@@ -12,6 +12,4 @@
 @interface QXBrowseModel : NSObject
 @property (copy, nonatomic) NSString *imageUrl;
 @property (strong, nonatomic) UIImage *image;
-@property (assign, nonatomic) CGFloat zoomScale;
-@property (strong, nonatomic) NSIndexPath *indexPath;
 @end

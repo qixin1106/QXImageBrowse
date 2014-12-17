@@ -15,7 +15,6 @@
     self = [super init];
     if (self)
     {
-        self.zoomScale = 1.0;
     }
     return self;
 }

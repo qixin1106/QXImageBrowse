@@ -30,17 +30,23 @@
     if (_browseModel!=browseModel)
     {
         _browseModel = browseModel;
+        [ImageLoader getImageWithURL:_browseModel.imageUrl
+                          loadFinish:^(UIImage *img) {
+                              self.showImageView.image = img;
+                          } loadFailure:^{
+                              
+                          }];
 //            UIImage *image = _browseModel.image;
 //
 //            self.showImageView.image = image;
 //            self.showImageView.frame = CGRectMake(0, (self.frame.size.height-self.frame.size.width*image.size.height/image.size.width)*0.5, self.frame.size.width, self.frame.size.width*image.size.height/image.size.width);
-        [ImageLoader getImageWithURL:_browseModel.imageUrl
-                         placeholder:nil
-                               block:^(UIImage *img) {
-                                   UIImage *image = img;
-                                   self.showImageView.image = image;
+//        [ImageLoader getImageWithURL:_browseModel.imageUrl
+//                         placeholder:nil
+//                               block:^(UIImage *img) {
+//                                   UIImage *image = img;
+//                                   self.showImageView.image = image;
 //                                   self.showImageView.frame = CGRectMake(0, (self.frame.size.height-self.frame.size.width*image.size.height/image.size.width)*0.5, self.frame.size.width, self.frame.size.width*image.size.height/image.size.width);
-                               }];
+//                               }];
 
     }
 }

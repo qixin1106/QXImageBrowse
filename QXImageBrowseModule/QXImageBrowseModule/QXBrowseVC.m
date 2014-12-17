@@ -29,6 +29,7 @@ UICollectionViewDelegateFlowLayout>
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    /*测试数据******************************************************************/
     self.dataArray = [NSMutableArray array];
     {
         QXBrowseModel *model = [[QXBrowseModel alloc] init];
@@ -55,6 +56,7 @@ UICollectionViewDelegateFlowLayout>
         model.imageUrl = @"http://hdimages.takungpao.com/2013/1012/20131012103749451.jpg";
         [self.dataArray addObject:model];
     }
+    /*测试数据******************************************************************/
 
 
 

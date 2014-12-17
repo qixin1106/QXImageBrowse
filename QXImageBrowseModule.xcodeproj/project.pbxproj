@@ -11,6 +11,8 @@
 		990693E01A408F73004B5A04 /* QXBrowseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 990693DB1A408F73004B5A04 /* QXBrowseCell.m */; };
 		990693E11A408F73004B5A04 /* QXBrowseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 990693DD1A408F73004B5A04 /* QXBrowseModel.m */; };
 		990693E21A408F73004B5A04 /* QXBrowseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 990693DF1A408F73004B5A04 /* QXBrowseVC.m */; };
+		9984E6461A41286D0086CE54 /* QXActivityView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9984E6431A41286D0086CE54 /* QXActivityView.m */; };
+		9984E6471A41286D0086CE54 /* QXHUDView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9984E6451A41286D0086CE54 /* QXHUDView.m */; };
 		99AB68F51A373CB4006E02B7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 99AB68F41A373CB4006E02B7 /* main.m */; };
 		99AB68F81A373CB4006E02B7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 99AB68F71A373CB4006E02B7 /* AppDelegate.m */; };
 		99AB68FB1A373CB4006E02B7 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99AB68FA1A373CB4006E02B7 /* ViewController.m */; };
@@ -41,6 +43,10 @@
 		990693DD1A408F73004B5A04 /* QXBrowseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QXBrowseModel.m; sourceTree = "<group>"; };
 		990693DE1A408F73004B5A04 /* QXBrowseVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QXBrowseVC.h; sourceTree = "<group>"; };
 		990693DF1A408F73004B5A04 /* QXBrowseVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QXBrowseVC.m; sourceTree = "<group>"; };
+		9984E6421A41286D0086CE54 /* QXActivityView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QXActivityView.h; sourceTree = "<group>"; };
+		9984E6431A41286D0086CE54 /* QXActivityView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QXActivityView.m; sourceTree = "<group>"; };
+		9984E6441A41286D0086CE54 /* QXHUDView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QXHUDView.h; sourceTree = "<group>"; };
+		9984E6451A41286D0086CE54 /* QXHUDView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QXHUDView.m; sourceTree = "<group>"; };
 		99AB68EF1A373CB4006E02B7 /* QXImageBrowseModule.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QXImageBrowseModule.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		99AB68F31A373CB4006E02B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		99AB68F41A373CB4006E02B7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -86,6 +92,17 @@
 			path = QXImageBrowseModule;
 			sourceTree = "<group>";
 		};
+		9984E6411A41286D0086CE54 /* HUD */ = {
+			isa = PBXGroup;
+			children = (
+				9984E6421A41286D0086CE54 /* QXActivityView.h */,
+				9984E6431A41286D0086CE54 /* QXActivityView.m */,
+				9984E6441A41286D0086CE54 /* QXHUDView.h */,
+				9984E6451A41286D0086CE54 /* QXHUDView.m */,
+			);
+			path = HUD;
+			sourceTree = "<group>";
+		};
 		99AB68E61A373CB4006E02B7 = {
 			isa = PBXGroup;
 			children = (
@@ -105,6 +122,7 @@
 		99AB68F11A373CB4006E02B7 /* QXImageBrowseModule */ = {
 			isa = PBXGroup;
 			children = (
+				9984E6411A41286D0086CE54 /* HUD */,
 				990693D91A408F73004B5A04 /* QXImageBrowseModule */,
 				990693D51A408BEF004B5A04 /* ImageLoader */,
 				99AB68F61A373CB4006E02B7 /* AppDelegate.h */,
@@ -203,8 +221,10 @@
 				990693E21A408F73004B5A04 /* QXBrowseVC.m in Sources */,
 				990693D81A408BEF004B5A04 /* ImageLoader.m in Sources */,
 				99AB68FB1A373CB4006E02B7 /* ViewController.m in Sources */,
+				9984E6461A41286D0086CE54 /* QXActivityView.m in Sources */,
 				99AB68F81A373CB4006E02B7 /* AppDelegate.m in Sources */,
 				990693E01A408F73004B5A04 /* QXBrowseCell.m in Sources */,
+				9984E6471A41286D0086CE54 /* QXHUDView.m in Sources */,
 				99AB68F51A373CB4006E02B7 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
