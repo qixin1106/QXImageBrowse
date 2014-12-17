@@ -46,7 +46,8 @@ UIActionSheetDelegate>
     self = [super init];
     if (self)
     {
-        self.lookIndex = index;
+        self.lookIndex = (index>dataArray.count-1)?dataArray.count-1:index;
+        
         self.dataArray = [NSMutableArray arrayWithArray:dataArray];
         self.automaticallyAdjustsScrollViewInsets = NO;
         self.navigationController.navigationBarHidden = YES;
