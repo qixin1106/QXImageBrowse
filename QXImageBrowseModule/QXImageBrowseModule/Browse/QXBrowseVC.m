@@ -41,7 +41,7 @@ UIActionSheetDelegate>
 
 #pragma mark - 生命周期
 - (instancetype)initWithDataArray:(NSArray*)dataArray
-                        lookIndex:(NSInteger)index
+                        lookIndex:(NSUInteger)index
 {
     self = [super init];
     if (self)

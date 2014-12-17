@@ -10,5 +10,5 @@
 
 @interface QXBrowseVC : UIViewController
 - (instancetype)initWithDataArray:(NSArray*)dataArray
-                        lookIndex:(NSInteger)index;
+                        lookIndex:(NSUInteger)index;
 @end
