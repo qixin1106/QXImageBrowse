@@ -8,7 +8,7 @@
 
 #import "ViewController.h"
 #import "QXBrowseVC.h"
-
+#import "QXBrowseModel.h"
 
 @interface ViewController ()
 
@@ -19,7 +19,36 @@
 
 - (IBAction)onClick:(UIButton *)sender
 {
-    QXBrowseVC *vc = [[QXBrowseVC alloc] init];
+    NSMutableArray *dataArray = [NSMutableArray array];
+    /*测试数据******************************************************************/
+    {
+        QXBrowseModel *model = [[QXBrowseModel alloc] init];
+        model.imageUrl = @"http://b.zol-img.com.cn/desk/bizhi/image/1/960x600/134849658379.jpg";
+        [dataArray addObject:model];
+    }
+    {
+        QXBrowseModel *model = [[QXBrowseModel alloc] init];
+        model.imageUrl = @"http://www.5qdd.com/files/qqpifu/25-04/dd121025164K0-13.jpg";
+        [dataArray addObject:model];
+    }
+    {
+        QXBrowseModel *model = [[QXBrowseModel alloc] init];
+        model.imageUrl = @"http://wenwen.soso.com/p/20111102/20111102220242-1110333906.jpg";
+        [dataArray addObject:model];
+    }
+    {
+        QXBrowseModel *model = [[QXBrowseModel alloc] init];
+        model.imageUrl = @"http://pic.nipic.com/2007-10-18/2007101813025488_2.jpg";
+        [dataArray addObject:model];
+    }
+    {
+        QXBrowseModel *model = [[QXBrowseModel alloc] init];
+        model.imageUrl = @"http://hdimages.takungpao.com/2013/1012/20131012103749451.jpg";
+        [dataArray addObject:model];
+    }
+    /*测试数据******************************************************************/
+
+    QXBrowseVC *vc = [[QXBrowseVC alloc] initWithDataArray:dataArray lookIndex:2];
     [self.navigationController pushViewController:vc animated:YES];
 }
 

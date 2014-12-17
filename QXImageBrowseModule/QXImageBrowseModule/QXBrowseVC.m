@@ -15,10 +15,13 @@ static NSString *cellID = @"QXBrowseCell.h";
 @interface QXBrowseVC ()
 <UICollectionViewDataSource,
 UICollectionViewDelegate,
-UICollectionViewDelegateFlowLayout>
+UICollectionViewDelegateFlowLayout,
+QXBrowseCellDelegate,
+UIActionSheetDelegate>
 
 @property (strong, nonatomic) UICollectionView *collectionView;
 @property (strong, nonatomic) NSMutableArray *dataArray;
+@property (assign, nonatomic) NSInteger lookIndex;
 @end
 
 @implementation QXBrowseVC
@@ -26,50 +29,43 @@ UICollectionViewDelegateFlowLayout>
 
 
 
+
+- (void)forcedToIndex:(NSInteger)index
+{
+    [self.collectionView selectItemAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]
+                                      animated:NO
+                                scrollPosition:UICollectionViewScrollPositionNone];
+}
+
+
+
+
+
+- (instancetype)initWithDataArray:(NSArray*)dataArray
+                        lookIndex:(NSInteger)index
+{
+    self = [super init];
+    if (self)
+    {
+        self.dataArray = [NSMutableArray arrayWithArray:dataArray];
+    }
+    return self;
+}
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    /*测试数据******************************************************************/
-    self.dataArray = [NSMutableArray array];
-    {
-        QXBrowseModel *model = [[QXBrowseModel alloc] init];
-        model.imageUrl = @"http://b.zol-img.com.cn/desk/bizhi/image/1/960x600/134849658379.jpg";
-        [self.dataArray addObject:model];
-    }
-    {
-        QXBrowseModel *model = [[QXBrowseModel alloc] init];
-        model.imageUrl = @"http://www.5qdd.com/files/qqpifu/25-04/dd121025164K0-13.jpg";
-        [self.dataArray addObject:model];
-    }
-    {
-        QXBrowseModel *model = [[QXBrowseModel alloc] init];
-        model.imageUrl = @"http://wenwen.soso.com/p/20111102/20111102220242-1110333906.jpg";
-        [self.dataArray addObject:model];
-    }
-    {
-        QXBrowseModel *model = [[QXBrowseModel alloc] init];
-        model.imageUrl = @"http://pic.nipic.com/2007-10-18/2007101813025488_2.jpg";
-        [self.dataArray addObject:model];
-    }
-    {
-        QXBrowseModel *model = [[QXBrowseModel alloc] init];
-        model.imageUrl = @"http://hdimages.takungpao.com/2013/1012/20131012103749451.jpg";
-        [self.dataArray addObject:model];
-    }
-    /*测试数据******************************************************************/
-
-
-
-    
     
     self.automaticallyAdjustsScrollViewInsets = NO;
-    
     self.navigationController.navigationBarHidden = YES;
+    
     
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     layout.minimumInteritemSpacing = 0;
     layout.minimumLineSpacing = 0;
+    
     
     self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height) collectionViewLayout:layout];
     self.collectionView.backgroundColor = [UIColor whiteColor];
@@ -99,6 +95,8 @@ UICollectionViewDelegateFlowLayout>
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     QXBrowseCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellID forIndexPath:indexPath];
+    cell.delegate = self;
+    cell.indexPath = indexPath;
     cell.backgroundColor = [UIColor whiteColor];
     cell.browseModel = self.dataArray[indexPath.row];
     return cell;
@@ -112,6 +110,60 @@ UICollectionViewDelegateFlowLayout>
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     return CGSizeMake(self.view.frame.size.width, self.view.frame.size.height);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#pragma mark - QXBrowseCellDelegate
+- (void)singleTapCallBack:(QXBrowseCell*)cell
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)longPressCallBack:(QXBrowseCell*)cell
+{
+    UIActionSheet *actionSheet =
+    [[UIActionSheet alloc] initWithTitle:nil
+                                delegate:self
+                       cancelButtonTitle:@"取消"
+                  destructiveButtonTitle:nil
+                       otherButtonTitles:@"保存图片", nil];
+    actionSheet.tag = cell.indexPath.row;
+    [actionSheet showInView:self.view];
+}
+
+
+
+
+
+
+
+
+
+
+
+
+#pragma mark - UIActionSheetDelegate
+- (void)actionSheet:(UIActionSheet *)actionSheet
+clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex==0)//保存图片
+    {
+        QXBrowseModel *model = self.dataArray[actionSheet.tag];
+        UIImageWriteToSavedPhotosAlbum(model.image, nil, nil, nil);
+    }
 }
 
 

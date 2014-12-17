@@ -29,6 +29,7 @@
 {
     [self.link invalidate];
     self.link = nil;
+    [self removeFromSuperview];
 }
 
 
@@ -36,7 +37,7 @@
 
 - (void)dealloc
 {
-    NSLog(@"QXActivityView dealloc!");
+    //NSLog(@"QXActivityView dealloc!");
     [self stopAnimation];
 }
 

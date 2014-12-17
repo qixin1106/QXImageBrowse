@@ -11,5 +11,5 @@
 
 @interface QXBrowseModel : NSObject
 @property (copy, nonatomic) NSString *imageUrl;
-@property (strong, nonatomic) UIImage *image;
+@property (strong, nonatomic) UIImage *image;//通过url获取成功后才会有值.
 @end

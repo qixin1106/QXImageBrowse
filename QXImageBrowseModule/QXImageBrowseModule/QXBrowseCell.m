@@ -8,12 +8,13 @@
 
 #import "QXBrowseCell.h"
 #import "ImageLoader.h"
-
+#import "QXActivityView.h"
 
 @interface QXBrowseCell ()
-<UIScrollViewDelegate>
+<UIScrollViewDelegate,UIGestureRecognizerDelegate>
 @property (strong, nonatomic) UIScrollView *scrollView;
 @property (strong, nonatomic) UIImageView *showImageView;
+@property (strong, nonatomic) QXActivityView *activityView;
 @end
 
 @implementation QXBrowseCell
@@ -30,11 +31,15 @@
     if (_browseModel!=browseModel)
     {
         _browseModel = browseModel;
+        self.showImageView.image = nil;
+        [self.activityView startAnimation];
         [ImageLoader getImageWithURL:_browseModel.imageUrl
                           loadFinish:^(UIImage *img) {
                               self.showImageView.image = img;
+                              self.browseModel.image = img;
+                              [self.activityView stopAnimation];
                           } loadFailure:^{
-                              
+                              [self.activityView stopAnimation];
                           }];
 //            UIImage *image = _browseModel.image;
 //
@@ -55,7 +60,10 @@
 
 - (void)singleTapClick:(UITapGestureRecognizer *)sender
 {
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"kSingleTapClick" object:nil];
+    if (self.delegate && [self.delegate respondsToSelector:@selector(singleTapCallBack:)])
+    {
+        [self.delegate singleTapCallBack:self];
+    }
 }
 
 
@@ -73,7 +81,16 @@
 }
 
 
-
+- (void)longPressClick:(UILongPressGestureRecognizer*)sender
+{
+    if (sender.state == UIGestureRecognizerStateBegan)
+    {
+        if (self.delegate && [self.delegate respondsToSelector:@selector(longPressCallBack:)])
+        {
+            [self.delegate longPressCallBack:self];
+        }
+    }
+}
 
 - (void)prepareForReuse
 {
@@ -107,6 +124,16 @@
         [self.scrollView addSubview:self.showImageView];
         
         
+        
+        self.activityView =
+        [[QXActivityView alloc] initWithCenter:CGPointMake(self.frame.size.width*0.5, self.frame.size.height*0.5)
+                                      diameter:30
+                                     lineWidth:2.0];
+        self.activityView.lineColor = [UIColor blackColor];
+        [self.contentView addSubview:self.activityView];
+        
+        
+        
         UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doubleTapClick:)];
         doubleTap.numberOfTapsRequired = 2;
         doubleTap.numberOfTouchesRequired = 1;
@@ -117,7 +144,13 @@
         singleTap.numberOfTapsRequired = 1;
         singleTap.numberOfTouchesRequired = 1;
         [self.scrollView addGestureRecognizer:singleTap];
+        
+        UILongPressGestureRecognizer *longGes = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressClick:)];
+        [self.scrollView addGestureRecognizer:longGes];
+        
+        [singleTap requireGestureRecognizerToFail:longGes];
         [singleTap requireGestureRecognizerToFail:doubleTap];
+
 
     }
     return self;
@@ -133,25 +166,12 @@
 
 
 #pragma mark - UIScrollView Delegate
-/* 在scrollview中Zoom的目标视图 */
-- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView {
+- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
+{
     return self.showImageView;
 }
 
-/* scrollview将要开始Zooming */
-- (void)scrollViewWillBeginZooming:(UIScrollView *)scrollView
-                          withView:(UIView *)view
-{
-    // NSLog(@"Begin Zooming");
-}
 
-/* scrollview已经发生了Zoom事件 */
-- (void)scrollViewDidZoom:(UIScrollView *)scrollView
-{
-    //NSLog(@"Did Zoom");
-}
-
-/* scrollview完成Zooming */
 - (void)scrollViewDidEndZooming:(UIScrollView *)scrollView
                        withView:(UIView *)view
                         atScale:(CGFloat)scale
@@ -173,6 +193,17 @@
         }];
     }
 }
+
+
+
+
+
+
+
+
+
+
+
 
 
 @end

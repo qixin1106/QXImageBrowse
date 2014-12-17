@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface QXBrowseVC : UIViewController
-
+- (instancetype)initWithDataArray:(NSArray*)dataArray
+                        lookIndex:(NSInteger)index;
 @end
