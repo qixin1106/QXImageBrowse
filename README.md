@@ -4,6 +4,7 @@ QXImageBrowse
 常用图片浏览工具(轻型)
 
 1.需要使用QXBrowseModel作为model传递,如果需要其他字段可以增加.
+
 2.可以在初始化页面时候lookIndex字段传递你需要观察的第几张图片.(注意:index不要越界)
 
 
