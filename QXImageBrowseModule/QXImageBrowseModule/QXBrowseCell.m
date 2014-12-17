@@ -10,6 +10,7 @@
 #import "ImageLoader.h"
 #import "QXActivityView.h"
 
+
 @interface QXBrowseCell ()
 <UIScrollViewDelegate,UIGestureRecognizerDelegate>
 @property (strong, nonatomic) UIScrollView *scrollView;

@@ -54,7 +54,8 @@
     }
     /*测试数据******************************************************************/
 
-    QXBrowseVC *vc = [[QXBrowseVC alloc] initWithDataArray:dataArray lookIndex:dataArray.count-1];
+    QXBrowseVC *vc = [[QXBrowseVC alloc] initWithDataArray:dataArray
+                                                 lookIndex:dataArray.count-1];
     [self presentViewController:vc animated:YES completion:NULL];
 }
 

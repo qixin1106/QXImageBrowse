@@ -10,6 +10,13 @@
 
 @implementation QXBrowseModel
 
+
+- (void)assignImage:(UIImage*)image
+{
+    self->_image = image;
+}
+
+
 - (instancetype)init
 {
     self = [super init];
