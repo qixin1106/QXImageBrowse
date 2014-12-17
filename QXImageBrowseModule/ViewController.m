@@ -10,12 +10,18 @@
 #import "QXBrowseVC.h"
 #import "QXBrowseModel.h"
 
+#import "ImageLoader.h"
+
 @interface ViewController ()
 
 @end
 
 @implementation ViewController
 
+- (IBAction)clearCache:(UIButton *)sender
+{
+    [ImageLoader deleteCacheImage];
+}
 
 - (IBAction)onClick:(UIButton *)sender
 {
@@ -48,8 +54,8 @@
     }
     /*测试数据******************************************************************/
 
-    QXBrowseVC *vc = [[QXBrowseVC alloc] initWithDataArray:dataArray lookIndex:2];
-    [self.navigationController pushViewController:vc animated:YES];
+    QXBrowseVC *vc = [[QXBrowseVC alloc] initWithDataArray:dataArray lookIndex:dataArray.count-1];
+    [self presentViewController:vc animated:YES completion:NULL];
 }
 
 

@@ -107,6 +107,7 @@
     self = [super initWithFrame:frame];
     if (self)
     {
+        self.backgroundColor = [UIColor whiteColor];
         self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
         self.scrollView.delegate = self;
         self.scrollView.showsHorizontalScrollIndicator = NO;

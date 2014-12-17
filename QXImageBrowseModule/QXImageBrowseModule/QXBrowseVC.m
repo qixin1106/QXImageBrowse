@@ -34,20 +34,39 @@ UIActionSheetDelegate>
 {
     [self.collectionView selectItemAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]
                                       animated:NO
-                                scrollPosition:UICollectionViewScrollPositionNone];
+                                scrollPosition:UICollectionViewScrollPositionCenteredHorizontally];
 }
 
 
 
-
-
+#pragma mark - 生命周期
 - (instancetype)initWithDataArray:(NSArray*)dataArray
                         lookIndex:(NSInteger)index
 {
     self = [super init];
     if (self)
     {
+        self.lookIndex = index;
         self.dataArray = [NSMutableArray arrayWithArray:dataArray];
+        self.automaticallyAdjustsScrollViewInsets = NO;
+        self.navigationController.navigationBarHidden = YES;
+        
+        
+        UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+        layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+        layout.minimumInteritemSpacing = 0;
+        layout.minimumLineSpacing = 0;
+        
+        
+        self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height) collectionViewLayout:layout];
+        self.collectionView.backgroundColor = [UIColor whiteColor];
+        self.collectionView.delegate = self;
+        self.collectionView.dataSource = self;
+        self.collectionView.pagingEnabled = YES;
+        self.collectionView.showsHorizontalScrollIndicator = NO;
+        self.collectionView.showsVerticalScrollIndicator = NO;
+        [self.collectionView registerClass:[QXBrowseCell class] forCellWithReuseIdentifier:cellID];
+        [self.view addSubview:self.collectionView];
     }
     return self;
 }
@@ -56,27 +75,14 @@ UIActionSheetDelegate>
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    self.automaticallyAdjustsScrollViewInsets = NO;
-    self.navigationController.navigationBarHidden = YES;
-    
-    
-    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-    layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-    layout.minimumInteritemSpacing = 0;
-    layout.minimumLineSpacing = 0;
-    
-    
-    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height) collectionViewLayout:layout];
-    self.collectionView.backgroundColor = [UIColor whiteColor];
-    self.collectionView.delegate = self;
-    self.collectionView.dataSource = self;
-    self.collectionView.pagingEnabled = YES;
-    self.collectionView.showsHorizontalScrollIndicator = NO;
-    self.collectionView.showsVerticalScrollIndicator = NO;
-    [self.collectionView registerClass:[QXBrowseCell class] forCellWithReuseIdentifier:cellID];
-    [self.view addSubview:self.collectionView];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.0001 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self forcedToIndex:self.lookIndex];
+    });
 }
+
+
+
+
 
 
 
@@ -129,7 +135,7 @@ UIActionSheetDelegate>
 #pragma mark - QXBrowseCellDelegate
 - (void)singleTapCallBack:(QXBrowseCell*)cell
 {
-    [self.navigationController popViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
 - (void)longPressCallBack:(QXBrowseCell*)cell
