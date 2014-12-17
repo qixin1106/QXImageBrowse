@@ -59,7 +59,7 @@ UIActionSheetDelegate>
         
         
         self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height) collectionViewLayout:layout];
-        self.collectionView.backgroundColor = [UIColor whiteColor];
+        self.collectionView.backgroundColor = [UIColor blackColor];
         self.collectionView.delegate = self;
         self.collectionView.dataSource = self;
         self.collectionView.pagingEnabled = YES;
